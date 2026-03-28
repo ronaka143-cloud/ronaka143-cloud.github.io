@@ -3,114 +3,103 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RAR Associates - Business Consultancy</title>
+<title>RAR Associates</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<!-- FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- ICONS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+<!-- AOS ANIMATION -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    margin: 0;
-    background: linear-gradient(135deg, #eef2f3, #ffffff);
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
 }
 
 /* HEADER */
 header {
-    background: linear-gradient(135deg, #007bff, #00c6ff);
-    color: white;
-    padding: 15px;
-    text-align: center;
-    position: sticky;
-    top: 0;
+    position: fixed;
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.05);
+    z-index: 1000;
 }
 
 nav a {
-    color: white;
     margin: 0 15px;
+    color: white;
     text-decoration: none;
-    position: relative;
-}
-
-nav a::after {
-    content: '';
-    width: 0;
-    height: 2px;
-    background: yellow;
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    transition: 0.3s;
-}
-
-nav a:hover::after {
-    width: 100%;
 }
 
 /* HERO */
 .hero {
-    background: url('https://source.unsplash.com/1600x900/?business') no-repeat center/cover;
-    height: 450px;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
     text-align: center;
-    position: relative;
-}
-
-.hero::before {
-    content:'';
-    position:absolute;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.5);
-}
-
-.hero-content {
-    position: relative;
 }
 
 .hero h1 {
-    font-size: 3em;
+    font-size: 3.5em;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    -webkit-background-clip: text;
+    color: transparent;
 }
 
-/* BUTTON */
-.cta-button {
-    background: linear-gradient(45deg, #ffd700, #ffb300);
-    padding: 12px 25px;
+.hero button {
+    margin-top: 20px;
+    padding: 12px 30px;
     border-radius: 30px;
     border: none;
+    background: linear-gradient(45deg, #00c6ff, #0072ff);
+    color: white;
     cursor: pointer;
 }
 
-/* SERVICES */
+/* SECTIONS */
 section {
-    padding: 50px 20px;
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
+/* SERVICES */
 .services {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 25px;
 }
 
-.service-item {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
+.card {
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.05);
     transition: 0.4s;
 }
 
-.service-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+.card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 0 25px rgba(0, 198, 255, 0.5);
 }
 
 /* ABOUT */
 .about {
-    background: #f8f9fa;
     text-align: center;
 }
 
@@ -122,28 +111,36 @@ form {
 
 input, textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin: 10px 0;
+    border-radius: 8px;
+    border: none;
 }
 
 /* FOOTER */
 footer {
-    background: #007bff;
-    color: white;
     text-align: center;
     padding: 20px;
 }
 
-/* FLOAT WHATSAPP */
+/* WHATSAPP */
 .whatsapp {
     position: fixed;
     bottom: 20px;
     right: 20px;
     background: #25d366;
-    color: white;
     padding: 15px;
     border-radius: 50%;
-    font-size: 20px;
+}
+
+/* ANIMATION */
+.glow {
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #00c6ff; }
+    to { text-shadow: 0 0 25px #0072ff; }
 }
 </style>
 </head>
@@ -151,81 +148,75 @@ footer {
 <body>
 
 <header>
-    <h1>RAR Associates</h1>
-    <p>Expert Business Consultancy Services</p>
+    <h2>RAR Associates</h2>
     <nav>
         <a href="#home">Home</a>
         <a href="#services">Services</a>
-        <a href="#about">About</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
 
-<section id="home" class="hero">
-    <div class="hero-content">
-        <h1>Grow Your Business with Experts</h1>
-        <p>7+ Years Experience in SME & Compliance</p>
-        <button class="cta-button" onclick="document.getElementById('services').scrollIntoView()">Explore Services</button>
+<section class="hero" id="home">
+    <div>
+        <h1 class="glow">Grow Your Business 🚀</h1>
+        <p>Premium Consultancy for SMEs</p>
+        <button onclick="document.getElementById('services').scrollIntoView()">Explore</button>
     </div>
 </section>
 
 <section id="services">
-    <h2 style="text-align:center;">Our Services</h2>
+    <h2 data-aos="fade-up">Our Services</h2>
+
     <div class="services">
-
-        <div class="service-item"><i class="fas fa-chart-line"></i><h3>SME IPO</h3></div>
-        <div class="service-item"><i class="fas fa-exchange-alt"></i><h3>Company Conversion</h3></div>
-        <div class="service-item"><i class="fas fa-share-alt"></i><h3>Share Demat</h3></div>
-        <div class="service-item"><i class="fas fa-file-alt"></i><h3>FCGPR Filing</h3></div>
-        <div class="service-item"><i class="fas fa-trademark"></i><h3>Trademark</h3></div>
-        <div class="service-item"><i class="fas fa-calculator"></i><h3>GST</h3></div>
-        <div class="service-item"><i class="fas fa-money-bill"></i><h3>Income Tax</h3></div>
-        <div class="service-item"><i class="fas fa-building"></i><h3>Business Registration</h3></div>
-
+        <div class="card" data-aos="zoom-in"><h3>IPO Consultancy</h3></div>
+        <div class="card" data-aos="zoom-in"><h3>GST & Tax</h3></div>
+        <div class="card" data-aos="zoom-in"><h3>Company Registration</h3></div>
+        <div class="card" data-aos="zoom-in"><h3>Trademark</h3></div>
     </div>
 </section>
 
-<section id="about" class="about">
-    <h2>About Founder</h2>
-    <h3>Ronak Sultania</h3>
-    <p>Helping SMEs grow with expert consultancy & compliance services.</p>
+<section class="about">
+    <h2 data-aos="fade-up">About</h2>
+    <p data-aos="fade-up">Led by Ronak Sultania with 7+ years experience.</p>
 </section>
 
 <section id="contact">
-    <h2 style="text-align:center;">Contact</h2>
+    <h2 data-aos="fade-up">Contact</h2>
+
     <form id="contactForm">
-        <textarea id="message" placeholder="Your Message" required></textarea>
-        <input type="tel" id="mobile" placeholder="Mobile Number" required>
+        <textarea id="message" placeholder="Message"></textarea>
+        <input id="mobile" placeholder="Mobile Number">
         <button type="submit">Send WhatsApp</button>
     </form>
 </section>
 
 <footer>
     <p>© 2026 RAR Associates</p>
-
-    <!-- VISITOR COUNTER -->
     <p>Total Visitors: <span id="visitorCount">Loading...</span></p>
 </footer>
 
-<!-- FLOAT BUTTON -->
-<a href="https://wa.me/918910282466" class="whatsapp" target="_blank">
+<a href="https://wa.me/918910282466" class="whatsapp">
     <i class="fab fa-whatsapp"></i>
 </a>
 
-<script>
-/* WHATSAPP FORM */
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
+<script>
+AOS.init();
+
+/* WHATSAPP */
+document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
     let msg = document.getElementById('message').value;
     let mobile = document.getElementById('mobile').value;
 
     let url = `https://wa.me/918910282466?text=${encodeURIComponent(msg + " Mobile: " + mobile)}`;
-    window.open(url, '_blank');
+    window.open(url);
 });
 
 /* VISITOR COUNTER */
-fetch('https://api.countapi.xyz/hit/rarassociates/visits')
+fetch('https://api.countapi.xyz/hit/rarassociates-premium/visits')
 .then(res => res.json())
 .then(data => {
     document.getElementById('visitorCount').innerText = data.value;
